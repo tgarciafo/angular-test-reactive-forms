@@ -1,0 +1,72 @@
+<div>
+    <h1>Test App</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="checkLogin()">
+
+        <label>User name:</label>
+        <input type="text" [formControl]="name"/>
+
+        <span style="color: red;" *ngIf="name.invalid && name?.errors.invalidWord">Administrator word is not available</span>
+
+        <span style="color: red;" *ngIf="loginForm.get('name').errors && (loginForm.get('name').touched || loginForm.get('name').dirty) ">
+            <span *ngIf="loginForm.get('name').errors.required">User name is required</span>
+            <span *ngIf="loginForm.get('name').errors.minlength || loginForm.get('name').errors.maxlength">User name must be greater than 5 characters and less than 25 characters</span>
+        </span>
+
+        <label>User surname:</label>
+        <input type="text" [formControl]="surname"/>
+
+        <span style="color: red;" *ngIf="loginForm.get('surname').errors && (loginForm.get('surname').touched || loginForm.get('surname').dirty) ">
+            <span *ngIf="loginForm.get('surname').errors.required">User password is required</span>
+            <span *ngIf="loginForm.get('surname').errors.minlength || loginForm.get('surname').errors.maxlength">User name must be greater than 5 characters and less than 25 characters</span>
+        </span>
+
+        <span style="color: red;" *ngIf="validatorEquality()">User name and User surname can't be equals</span>
+
+        <label>User birthdate:</label>
+        <input type="text" [formControl]="birthdate"/>
+
+        <span style="color: red;" *ngIf="loginForm.get('birthdate').errors && (loginForm.get('birthdate').touched || loginForm.get('birthdate').dirty) ">
+            <span *ngIf="loginForm.get('birthdate').errors.pattern"> User birthdate must be like DD/MM/YYYY</span>
+        </span>
+
+        <label>User email:</label>
+        <input type="text" [formControl]="email"/>
+
+        <span style="color: red;" *ngIf="loginForm.get('email').errors && (loginForm.get('email').touched || loginForm.get('email').dirty) ">
+            <span *ngIf="loginForm.get('email').errors.required">User email is required</span>
+        </span>
+        
+        <label>User age:</label>
+        <input type="number" [formControl]="age"/>
+
+        <span style="color: red;" *ngIf="loginForm.get('age').errors && (loginForm.get('age').touched || loginForm.get('age').dirty) ">
+            <span *ngIf="loginForm.get('age').errors.required">User age is required</span>
+            <span *ngIf="loginForm.get('age').errors.min">User age must be greater than 18 years</span>
+        </span>
+
+        <label>User telephone number:</label>
+        <input type="number" [formControl]="telephone"/>
+
+        <span style="color: red;" *ngIf="loginForm.get('telephone').errors && (loginForm.get('telephone').touched || loginForm.get('telephone').dirty) ">
+            <span *ngIf="loginForm.get('telephone').errors.required">User telephone is required</span>
+        </span>
+
+        <label>User description:</label>
+        <textarea rows="4" cols="50"  [formControl]="description"></textarea>
+
+        <span style="color: red;" *ngIf="loginForm.get('description').errors && (loginForm.get('description').touched || loginForm.get('description').dirty) ">
+            <span *ngIf="loginForm.get('description').errors.minlength || loginForm.get('description').errors.maxlength">User description must be less than 200 characters</span>
+        </span>
+
+        <label>User password:</label>
+        <input type="password" [formControl]="password"/>
+
+        <button type="submit" [disabled]="!loginForm.valid">Login</button>
+
+    </form>
+</div>
+
+
+
+
+
